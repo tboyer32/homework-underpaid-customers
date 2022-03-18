@@ -1,4 +1,4 @@
-melon_cost = 1.00
+""" melon_cost = 1.00
 
 customer1_name = "Joe"
 customer1_melons = 5
@@ -58,4 +58,23 @@ customer6_expected = customer6_melons * melon_cost
 if customer6_expected != customer6_paid:
     print(f"{customer6_name} paid ${customer6_paid:.2f},",
           f"expected ${customer6_expected:.2f}"
-          )
+          ) """
+
+
+def reconcile_accounts(the_file):
+    melon_price = 1.00
+
+    for line in the_file:
+        line = line.rstrip()
+        element = line.split('|')
+
+        customer_num = element[0]
+        customer_name = element[1]
+        melon_qty = float(element[2])
+        customer_paid = float(element[3])
+        expected_payment = melon_price * melon_qty
+
+        print(f"{customer_name} paid ${customer_paid:.2f}, expected ${expected_payment:.2f}")
+
+the_file = open("customer-orders.txt")
+reconcile_accounts(the_file)
